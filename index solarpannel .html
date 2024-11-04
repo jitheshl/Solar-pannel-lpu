@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Solar Panel Awareness Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(che.jpeg); /* Replace with your desired image URL */
+            background-size: cover;
+            background-position: center;
+            color: black; /* Change text color to black for better contrast on white backgrounds */
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for the container */
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            animation: fadeIn 1s;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333; /* Darker color for the title */
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333; /* Darker color for labels */
+        }
+
+        /* Input and select elements */
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc; /* Light border for inputs */
+            font-size: 16px; /* Adjusted for better readability */
+            background-color: white; /* White background for inputs */
+            color: black; /* Black text color for readability */
+        }
+
+        textarea {
+            resize: none; /* Prevent text area resizing */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Ensure button text is consistent */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 5px #45a049; /* Adding focus effect */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="survey-title">Solar Panel Awareness Survey</h1>
+        <form id="survey-form" onsubmit="return submitSurvey()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label>1. Are you aware of solar panels?</label>
+            <select id="awareness">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label>2. Have you considered installing solar panels?</label>
+            <select id="consider-installation">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label>3. What is the main reason for considering or not considering installation?</label>
+            <textarea id="reason" required></textarea>
+
+            <label>4. What challenges do you think exist for solar panel installation?</label>
+            <input type="text" id="challenges">
+
+            <label>5. Are you aware of any government subsidies for solar panel installation?</label>
+            <select id="subsidies">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label>6. Would you need assistance in the installation process?</label>
+            <select id="need-assistance">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label>7. How likely are you to recommend solar panels to others?</label>
+            <input type="range" id="recommendation" min="1" max="10">
+
+            <label>8. What sources of information do you rely on for solar energy?</label>
+            <textarea id="sources" required></textarea>
+
+            <label>9. Would you participate in a workshop on solar panel installation?</label>
+            <select id="workshop">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label>10. Any additional comments or suggestions?</label>
+            <textarea id="comments"></textarea>
+
+            <button type="submit">Submit Survey</button>
+        </form>
+        
+        <div id="thank-you" class="hidden">
+            <h2>Thank You for Your Participation!</h2>
+            <p>Your responses have been recorded.</p>
+            <a href="#" onclick="goBack()">Go back to the survey</a>
+        </div>
+    </div>
+    <script>
+        function submitSurvey() {
+            // Collecting data from the form
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const awareness = document.getElementById("awareness").value;
+            const considerInstallation = document.getElementById("consider-installation").value;
+            const reason = document.getElementById("reason").value;
+            const challenges = document.getElementById("challenges").value;
+            const subsidies = document.getElementById("subsidies").value;
+            const needAssistance = document.getElementById("need-assistance").value;
+            const recommendation = document.getElementById("recommendation").value;
+            const sources = document.getElementById("sources").value;
+            const workshop = document.getElementById("workshop").value;
+            const comments = document.getElementById("comments").value;
+
+            // For demonstration purposes, logging the collected data to the console
+            console.log("Survey Data:", {
+                name,
+                email,
+                awareness,
+                considerInstallation,
+                reason,
+                challenges,
+                subsidies,
+                needAssistance,
+                recommendation,
+                sources,
+                workshop,
+                comments,
+            });
+
+            // Hide the survey form and show the thank you message
+            document.getElementById("survey-form").classList.add("hidden");
+            document.getElementById("thank-you").classList.remove("hidden");
+
+            return false; // Prevent form submission for demo purposes
+        }
+
+        function goBack() {
+            // Hide the thank you message and show the survey form again
+            document.getElementById("thank-you").classList.add("hidden");
+            document.getElementById("survey-form").classList.remove("hidden");
+            document.getElementById("survey-title").scrollIntoView(); // Scroll back to the title
+        }
+    </script>
+</body>
+</html>
